@@ -5,6 +5,7 @@ class App {
   async run() {
     OutputView.printStart();
     await InputView.readDate();
+    await InputView.orderData();
   }
 }
 
