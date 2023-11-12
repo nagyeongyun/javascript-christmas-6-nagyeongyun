@@ -1,4 +1,3 @@
-import { Console } from '@woowacourse/mission-utils';
 import { ERROR_MESSAGES } from './constants/Errors.js';
 import { MENU_LIST } from './constants/EventData.js';
 
@@ -41,6 +40,24 @@ class Validator {
     }
     if (menu.length !== orderData.length) {
       throw new Error(ERROR_MESSAGES.order_error);
+    }
+    Validator.eventAlert(menu, count);
+  }
+
+  static eventAlert(menu, count) {
+    const drink = Object.keys(MENU_LIST.drink);
+
+    if (count.some(count => count > 20)) {
+      throw new Error(ERROR_MESSAGES.max_order_error);
+    }
+    if (menu.length === 1 && drink.includes(menu[0])) {
+      throw new Error(ERROR_MESSAGES.only_drink_error);
+    }
+  }
+
+  static minAmount(amount) {
+    if (amount < 10000) {
+      throw new Error(ERROR_MESSAGES.min_amount_error);
     }
   }
 }

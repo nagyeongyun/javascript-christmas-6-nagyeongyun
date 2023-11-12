@@ -1,6 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import { INPUT_MESSAGES } from './constants/Messages.js';
 import Validator from './Validator.js';
+import AmountCalculator from './AmountCalculator.js';
 
 const InputView = {
   async readDate() {
@@ -9,10 +10,8 @@ const InputView = {
       Validator.inputDate(inputDate);
     } catch (error) {
       Console.print(error.message);
-
       return this.readDate();
     }
-
     return inputDate;
   },
 
@@ -22,29 +21,28 @@ const InputView = {
       Validator.inputOrder(inputOrder);
     } catch (error) {
       Console.print(error.message);
-
       return this.orderData();
     }
-
-    return inputOrder;
+    return inputOrder.split(',');
   },
 
   async orderData() {
-    const inputOrder = await this.readOrder();
-    const orderData = inputOrder.split(',');
+    const orderData = await this.readOrder();
     const orderMenu = {};
+
+    orderData.forEach(data => {
+      const [name, count] = data.split('-');
+      const menuName = name.trim();
+      orderMenu[menuName] = Number(count);
+    });
     try {
-      orderData.forEach(data => {
-        const [name, count] = data.split('-');
-        const menuName = name.trim();
-        orderMenu[menuName] = count;
-      });
       Validator.orderData(orderMenu, orderData);
     } catch (error) {
       Console.print(error.message);
-
       return this.orderData();
     }
+    const amount = new AmountCalculator(orderMenu);
+    return orderMenu;
   },
 };
 
