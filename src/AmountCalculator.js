@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { MENU_LIST } from './constants/EventData.js';
+import { MENU_LIST, NUMBER_CONDITION } from './constants/EventData.js';
 import Validator from './Validator.js';
 import InputView from './InputView.js';
 
@@ -33,6 +33,12 @@ class AmountCalculator {
     }
 
     return totalAmount;
+  }
+
+  hasGiftMenu() {
+    const totalAmount = this.totalAmount();
+
+    return totalAmount >= NUMBER_CONDITION.gift_amount;
   }
 }
 

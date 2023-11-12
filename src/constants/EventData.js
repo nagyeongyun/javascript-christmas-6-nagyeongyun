@@ -20,3 +20,7 @@ export const MENU_LIST = Object.freeze({
     샴페인: 25000,
   },
 });
+
+export const NUMBER_CONDITION = Object.freeze({
+  gift_amount: 120000,
+});
