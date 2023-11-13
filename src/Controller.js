@@ -14,7 +14,7 @@ class Controller {
     amountCalculator.calculateTotalAmount();
 
     const date = new BenefitCalculator(inputDate, orderData);
-    date.calculateWeekendDiscount();
+    date.calculateWeekdayDiscount();
   }
 }
 

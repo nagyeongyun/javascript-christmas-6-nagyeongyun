@@ -47,6 +47,23 @@ class OrderDataManager {
 
     return mainCount;
   }
+
+  checkDessertMenu() {
+    const orderCategories = this.findMenuCategory();
+    const menuCategories = Object.keys(MENU_LIST);
+    const orderCount = Object.values(this.#orderMenu);
+
+    const dessertIndex = orderCategories.reduce((acc, category, index) => {
+      return category === menuCategories[2] ? [...acc, index] : acc;
+    }, []);
+
+    const dessertCount = dessertIndex.reduce(
+      (sum, index) => sum + orderCount[index],
+      0,
+    );
+
+    return dessertCount;
+  }
 }
 
 export default OrderDataManager;
