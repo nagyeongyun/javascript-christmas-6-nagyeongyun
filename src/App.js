@@ -1,13 +1,14 @@
 import InputView from './InputView.js';
 import OutputView from './OutputView.js';
 import Controller from './Controller.js';
+import { Console } from '@woowacourse/mission-utils';
 
 class App {
   async run() {
     OutputView.printStart();
-    await InputView.readDate();
 
     const controller = new Controller();
+    await controller.visitDate();
     await controller.orderData();
   }
 }

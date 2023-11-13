@@ -21,7 +21,7 @@ class AmountCalculator {
     return prices;
   }
 
-  totalAmount() {
+  calculateTotalAmount() {
     const prices = this.findPrice();
     const totalAmount = prices.reduce((total, price) => total + price, 0);
 

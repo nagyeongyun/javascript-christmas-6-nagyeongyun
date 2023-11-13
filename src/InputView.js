@@ -1,7 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import { INPUT_MESSAGES } from './constants/Messages.js';
 import Validator from './Validator.js';
-import AmountCalculator from './AmountCalculator.js';
+import Controller from './Controller.js';
 
 const InputView = {
   async readDate() {
@@ -41,7 +41,6 @@ const InputView = {
       Console.print(error.message);
       return this.orderData();
     }
-    const amount = new AmountCalculator(orderMenu);
     return orderMenu;
   },
 };
