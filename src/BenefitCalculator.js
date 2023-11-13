@@ -19,13 +19,21 @@ class BenefitCalculator {
     return christmasDiscount;
   }
 
+  weekBenefitManage() {
+    if (!NUMBER_CONDITION.weekend_days.includes(Number(this.#date))) {
+      this.calculateWeekdayDiscount();
+    }
+    if (NUMBER_CONDITION.weekend_days.includes(Number(this.#date))) {
+      this.calculateWeekendDiscount();
+    }
+  }
+
   calculateWeekdayDiscount() {
     let dessertCount;
     let weekdayDiscount = NUMBER_CONDITION.no_discount;
 
-    if (!NUMBER_CONDITION.weekend_days.includes(Number(this.#date))) {
-      dessertCount = this.orderData.checkDessertMenu();
-    }
+    dessertCount = this.orderData.checkDessertMenu();
+
     if (dessertCount !== NUMBER_CONDITION.no_discount) {
       weekdayDiscount = dessertCount * NUMBER_CONDITION.menu_discount;
     }
@@ -37,9 +45,8 @@ class BenefitCalculator {
     let mainCount;
     let weekendDiscount = NUMBER_CONDITION.no_discount;
 
-    if (NUMBER_CONDITION.weekend_days.includes(Number(this.#date))) {
-      mainCount = this.orderData.checkMainMenu();
-    }
+    mainCount = this.orderData.checkMainMenu();
+
     if (mainCount !== NUMBER_CONDITION.no_discount) {
       weekendDiscount = mainCount * NUMBER_CONDITION.menu_discount;
     }
