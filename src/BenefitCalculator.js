@@ -66,14 +66,22 @@ class BenefitCalculator {
     return specialDiscount;
   }
 
-  calculateTotalBenefit() {
+  calculateTotalDiscount() {
     const christmasBenefit = this.calculateChristmasDiscount();
     const weekBenefit = this.weekBenefitManage();
     const specialBenefit = this.calculateSpecialDiscount();
+
+    const totalDiscount = christmasBenefit + weekBenefit + specialBenefit;
+    this.amount.discountAfterAmount(totalDiscount);
+
+    return totalDiscount;
+  }
+
+  calculateTotalBenefit() {
+    const totalDiscount = this.calculateTotalDiscount();
     const giftBenefit = this.amount.hasGiftMenu();
 
-    const totalBenefit =
-      christmasBenefit + weekBenefit + specialBenefit + giftBenefit;
+    const totalBenefit = totalDiscount + giftBenefit;
 
     return totalBenefit;
   }

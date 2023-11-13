@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { MENU_LIST, NUMBER_CONDITION } from './constants/EventData.js';
+import { MENU_LIST } from './constants/EventData.js';
 
 class OrderDataManager {
   #orderMenu;

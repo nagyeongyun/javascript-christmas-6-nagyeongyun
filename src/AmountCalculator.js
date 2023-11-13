@@ -2,14 +2,13 @@ import { Console } from '@woowacourse/mission-utils';
 import { NUMBER_CONDITION } from './constants/EventData.js';
 import Validator from './Validator.js';
 import InputView from './InputView.js';
-import BenefitCalculator from './BenefitCalculator.js';
 
 class AmountCalculator {
   #totalAmount;
 
   constructor(orderData) {
     this.orderData = orderData;
-    this.#totalAmount = 0;
+    this.#totalAmount = this.calculateTotalAmount();
   }
 
   calculateTotalAmount() {
@@ -27,13 +26,18 @@ class AmountCalculator {
   }
 
   hasGiftMenu() {
-    this.#totalAmount = this.calculateTotalAmount();
-
     if (this.#totalAmount >= NUMBER_CONDITION.gift_condition) {
       return NUMBER_CONDITION.gift_amount;
     }
 
     return NUMBER_CONDITION.no_discount;
+  }
+
+  discountAfterAmount(discount) {
+    const totalDiscount = discount;
+    const expectedPayment = this.#totalAmount - totalDiscount;
+
+    return expectedPayment;
   }
 }
 

@@ -14,7 +14,9 @@ class Controller {
     amountCalculator.calculateTotalAmount();
 
     const date = new BenefitCalculator(inputDate, orderData);
+
     date.calculateTotalBenefit();
+    //amountCalculator.discountAfterAmount();
   }
 }
 
