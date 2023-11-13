@@ -1,14 +1,24 @@
 import InputView from './InputView.js';
 import OutputView from './OutputView.js';
-import Controller from './Controller.js';
-import { Console } from '@woowacourse/mission-utils';
+import AmountCalculator from './AmountCalculator.js';
+import BenefitCalculator from './BenefitCalculator.js';
+import OrderDataManager from './OrderDataManager.js';
 
 class App {
   async run() {
     OutputView.printStart();
 
-    const controller = new Controller();
-    await controller.start();
+    const inputDate = await InputView.readDate();
+    const orderMenu = await InputView.orderData();
+
+    const orderData = new OrderDataManager(orderMenu);
+    const amountCalculator = new AmountCalculator(orderData);
+
+    amountCalculator.calculateTotalAmount();
+
+    const date = new BenefitCalculator(inputDate, orderData);
+
+    date.calculateTotalBenefit();
   }
 }
 

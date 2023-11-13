@@ -14,6 +14,13 @@ const OutputView = {
       Console.print(`${menu} ${count}개`);
     });
   },
+
+  printTotalAmount(amount) {
+    const totalAmount = amount.toLocaleString();
+
+    Console.print(OUTPUT_MESSAGES.total_order_amount);
+    Console.print(`${totalAmount}원`);
+  },
 };
 
 export default OutputView;

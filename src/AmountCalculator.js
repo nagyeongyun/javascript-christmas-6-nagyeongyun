@@ -2,13 +2,13 @@ import { Console } from '@woowacourse/mission-utils';
 import { NUMBER_CONDITION } from './constants/EventData.js';
 import Validator from './Validator.js';
 import InputView from './InputView.js';
+import OutputView from './OutputView.js';
 
 class AmountCalculator {
   #totalAmount;
 
   constructor(orderData) {
     this.orderData = orderData;
-    this.#totalAmount = this.calculateTotalAmount();
   }
 
   calculateTotalAmount() {
@@ -21,6 +21,7 @@ class AmountCalculator {
       Console.print(error.message);
       return InputView.orderData();
     }
+    OutputView.printTotalAmount(this.#totalAmount);
 
     return this.#totalAmount;
   }
