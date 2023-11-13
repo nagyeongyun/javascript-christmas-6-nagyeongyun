@@ -4,8 +4,9 @@ import { Console } from '@woowacourse/mission-utils';
 class BenefitCalculator {
   #date;
 
-  constructor(date) {
+  constructor(date, orderData) {
     this.#date = date;
+    this.orderData = orderData;
   }
 
   calculateChristmasDiscount() {
@@ -18,11 +19,25 @@ class BenefitCalculator {
     return christmasDiscount;
   }
 
+  calculateWeekendDiscount() {
+    let mainCount;
+    let weekendDiscount = NUMBER_CONDITION.no_discount;
+
+    if (NUMBER_CONDITION.weekend_days.includes(Number(this.#date))) {
+      mainCount = this.orderData.checkMainMenu();
+    }
+    if (mainCount !== NUMBER_CONDITION.no_discount) {
+      weekendDiscount = mainCount * NUMBER_CONDITION.menu_discount;
+    }
+
+    return weekendDiscount;
+  }
+
   calculateSpecialDiscount() {
     let specialDiscount = NUMBER_CONDITION.no_discount;
 
     if (NUMBER_CONDITION.special_days.includes(Number(this.#date))) {
-      specialDiscount = 1000;
+      specialDiscount = NUMBER_CONDITION.special_discount;
     }
 
     return specialDiscount;

@@ -21,8 +21,7 @@ class AmountCalculator {
       Console.print(error.message);
       return InputView.orderData();
     }
-    Console.print(prices);
-    Console.print(this.#totalAmount);
+
     return this.#totalAmount;
   }
 

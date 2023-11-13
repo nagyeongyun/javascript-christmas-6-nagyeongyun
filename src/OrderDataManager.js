@@ -1,4 +1,5 @@
-import { MENU_LIST } from './constants/EventData.js';
+import { Console } from '@woowacourse/mission-utils';
+import { MENU_LIST, NUMBER_CONDITION } from './constants/EventData.js';
 
 class OrderDataManager {
   #orderMenu;
@@ -16,6 +17,35 @@ class OrderDataManager {
     });
 
     return prices;
+  }
+
+  findMenuCategory() {
+    const menuCategories = Object.keys(this.#orderMenu).flatMap(menu => {
+      const categoryName = Object.keys(MENU_LIST).find(category =>
+        Object.keys(MENU_LIST[category]).includes(menu),
+      );
+
+      return categoryName;
+    });
+
+    return menuCategories;
+  }
+
+  checkMainMenu() {
+    const orderCategories = this.findMenuCategory();
+    const menuCategories = Object.keys(MENU_LIST);
+    const orderCount = Object.values(this.#orderMenu);
+
+    const mainIndex = orderCategories.reduce((acc, category, index) => {
+      return category === menuCategories[1] ? [...acc, index] : acc;
+    }, []);
+
+    const mainCount = mainIndex.reduce(
+      (sum, index) => sum + orderCount[index],
+      0,
+    );
+
+    return mainCount;
   }
 }
 

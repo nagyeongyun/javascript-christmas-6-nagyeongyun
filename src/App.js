@@ -8,8 +8,7 @@ class App {
     OutputView.printStart();
 
     const controller = new Controller();
-    await controller.visitDate();
-    await controller.orderData();
+    await controller.start();
   }
 }
 
