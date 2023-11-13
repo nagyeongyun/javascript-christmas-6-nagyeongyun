@@ -6,8 +6,13 @@ const OutputView = {
     Console.print(OUTPUT_MESSAGES.start);
   },
 
-  printMenu() {
-    Console.print('<주문 메뉴>');
+  printMenu(ordermenu) {
+    Console.print(OUTPUT_MESSAGES.preview);
+    Console.print(OUTPUT_MESSAGES.order_menu);
+
+    Object.entries(ordermenu).forEach(([menu, count]) => {
+      Console.print(`${menu} ${count}개`);
+    });
   },
 };
 

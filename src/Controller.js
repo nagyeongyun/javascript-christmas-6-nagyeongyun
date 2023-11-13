@@ -1,4 +1,5 @@
 import InputView from './InputView.js';
+import OutputView from './OutputView.js';
 import AmountCalculator from './AmountCalculator.js';
 import BenefitCalculator from './BenefitCalculator.js';
 import OrderDataManager from './OrderDataManager.js';
@@ -16,7 +17,6 @@ class Controller {
     const date = new BenefitCalculator(inputDate, orderData);
 
     date.calculateTotalBenefit();
-    //amountCalculator.discountAfterAmount();
   }
 }
 

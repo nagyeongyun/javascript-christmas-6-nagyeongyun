@@ -1,6 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import { INPUT_MESSAGES } from './constants/Messages.js';
 import Validator from './Validator.js';
+import OutputView from './OutputView.js';
 
 const InputView = {
   async readDate() {
@@ -36,6 +37,7 @@ const InputView = {
     });
     try {
       Validator.orderData(orderMenu, orderData);
+      OutputView.printMenu(orderMenu);
     } catch (error) {
       Console.print(error.message);
       return this.orderData();

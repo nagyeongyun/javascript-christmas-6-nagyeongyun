@@ -2,7 +2,6 @@ import { NUMBER_CONDITION } from './constants/EventData.js';
 import { OUTPUT_MESSAGES } from './constants/Messages.js';
 import AmountCalculator from './AmountCalculator.js';
 import { Console } from '@woowacourse/mission-utils';
-import OutputView from './OutputView';
 
 class BenefitCalculator {
   #date;
