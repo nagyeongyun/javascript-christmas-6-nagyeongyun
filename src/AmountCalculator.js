@@ -2,6 +2,7 @@ import { Console } from '@woowacourse/mission-utils';
 import { NUMBER_CONDITION } from './constants/EventData.js';
 import Validator from './Validator.js';
 import InputView from './InputView.js';
+import BenefitCalculator from './BenefitCalculator.js';
 
 class AmountCalculator {
   #totalAmount;
@@ -28,7 +29,11 @@ class AmountCalculator {
   hasGiftMenu() {
     this.#totalAmount = this.calculateTotalAmount();
 
-    return this.#totalAmount >= NUMBER_CONDITION.gift_amount;
+    if (this.#totalAmount >= NUMBER_CONDITION.gift_condition) {
+      return NUMBER_CONDITION.gift_amount;
+    }
+
+    return NUMBER_CONDITION.no_discount;
   }
 }
 

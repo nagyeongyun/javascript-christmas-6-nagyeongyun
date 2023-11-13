@@ -6,15 +6,15 @@ import OrderDataManager from './OrderDataManager.js';
 class Controller {
   async start() {
     const inputDate = await InputView.readDate();
-
     const orderMenu = await InputView.orderData();
+
     const orderData = new OrderDataManager(orderMenu);
     const amountCalculator = new AmountCalculator(orderData);
 
     amountCalculator.calculateTotalAmount();
 
     const date = new BenefitCalculator(inputDate, orderData);
-    date.weekBenefitManage();
+    date.calculateTotalBenefit();
   }
 }
 

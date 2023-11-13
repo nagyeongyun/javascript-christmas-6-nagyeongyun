@@ -22,7 +22,8 @@ export const MENU_LIST = Object.freeze({
 });
 
 export const NUMBER_CONDITION = Object.freeze({
-  gift_amount: 120000,
+  gift_condition: 120000,
+  gift_amount: 25000,
   christmas_days: [...Array(25)].map((_, index) => index + 1),
   christmas_discounts: [...Array(25)].map((_, index) => 1000 + index * 100),
   weekend_days: [1, 2, 8, 9, 15, 16, 22, 23, 29, 30],

@@ -14,4 +14,7 @@ export const OUTPUT_MESSAGES = Object.freeze({
   total_benefit_amount: '\n<총혜택 금액>\n',
   discount_after_amount: '\n<할인 후 예상 결제 금액>\n',
   event_badge: '\n<혜택 내역>\n',
+
+  gift: '샴페인 1개',
+  no_result: '없음',
 });

@@ -1,4 +1,5 @@
 import { NUMBER_CONDITION } from './constants/EventData.js';
+import AmountCalculator from './AmountCalculator.js';
 import { Console } from '@woowacourse/mission-utils';
 
 class BenefitCalculator {
@@ -7,6 +8,7 @@ class BenefitCalculator {
   constructor(date, orderData) {
     this.#date = date;
     this.orderData = orderData;
+    this.amount = new AmountCalculator(orderData);
   }
 
   calculateChristmasDiscount() {
@@ -21,10 +23,10 @@ class BenefitCalculator {
 
   weekBenefitManage() {
     if (!NUMBER_CONDITION.weekend_days.includes(Number(this.#date))) {
-      this.calculateWeekdayDiscount();
+      return this.calculateWeekdayDiscount();
     }
     if (NUMBER_CONDITION.weekend_days.includes(Number(this.#date))) {
-      this.calculateWeekendDiscount();
+      return this.calculateWeekendDiscount();
     }
   }
 
@@ -62,6 +64,18 @@ class BenefitCalculator {
     }
 
     return specialDiscount;
+  }
+
+  calculateTotalBenefit() {
+    const christmasBenefit = this.calculateChristmasDiscount();
+    const weekBenefit = this.weekBenefitManage();
+    const specialBenefit = this.calculateSpecialDiscount();
+    const giftBenefit = this.amount.hasGiftMenu();
+
+    const totalBenefit =
+      christmasBenefit + weekBenefit + specialBenefit + giftBenefit;
+
+    return totalBenefit;
   }
 }
 
