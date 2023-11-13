@@ -17,6 +17,16 @@ class BenefitCalculator {
 
     return christmasDiscount;
   }
+
+  calculateSpecialDiscount() {
+    let specialDiscount = NUMBER_CONDITION.no_discount;
+
+    if (NUMBER_CONDITION.special_days.includes(Number(this.#date))) {
+      specialDiscount = 1000;
+    }
+
+    return specialDiscount;
+  }
 }
 
 export default BenefitCalculator;
