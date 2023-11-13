@@ -1,44 +1,35 @@
 import { Console } from '@woowacourse/mission-utils';
-import { MENU_LIST, NUMBER_CONDITION } from './constants/EventData.js';
+import { NUMBER_CONDITION } from './constants/EventData.js';
 import Validator from './Validator.js';
 import InputView from './InputView.js';
 
 class AmountCalculator {
-  #orderMenu;
+  #totalAmount;
 
-  constructor(orderMenu) {
-    this.#orderMenu = orderMenu;
-  }
-
-  findPrice() {
-    const prices = Object.keys(this.#orderMenu).flatMap(menu => {
-      const price = Object.values(MENU_LIST).flatMap(category =>
-        Object.keys(category).includes(menu) ? [category[menu]] : [],
-      );
-      return price.length > 0 ? [price[0] * this.#orderMenu[menu]] : [];
-    });
-
-    return prices;
+  constructor(orderData) {
+    this.orderData = orderData;
+    this.#totalAmount = 0;
   }
 
   calculateTotalAmount() {
-    const prices = this.findPrice();
-    const totalAmount = prices.reduce((total, price) => total + price, 0);
+    const prices = this.orderData.findPrice();
+    this.#totalAmount = prices.reduce((total, price) => total + price, 0);
 
     try {
-      Validator.minAmount(totalAmount);
+      Validator.minAmount(this.#totalAmount);
     } catch (error) {
       Console.print(error.message);
       return InputView.orderData();
     }
-
-    return totalAmount;
+    Console.print(prices);
+    Console.print(this.#totalAmount);
+    return this.#totalAmount;
   }
 
   hasGiftMenu() {
-    const totalAmount = this.totalAmount();
+    this.#totalAmount = this.calculateTotalAmount();
 
-    return totalAmount >= NUMBER_CONDITION.gift_amount;
+    return this.#totalAmount >= NUMBER_CONDITION.gift_amount;
   }
 }
 
