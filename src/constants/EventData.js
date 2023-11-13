@@ -31,4 +31,7 @@ export const NUMBER_CONDITION = Object.freeze({
   menu_discount: 2023,
   special_discount: 1000,
   no_discount: 0,
+  star_badge_amount: 5000,
+  tree_badge_amount: 10000,
+  santa_badge_amount: 20000,
 });

@@ -1,6 +1,8 @@
 import { NUMBER_CONDITION } from './constants/EventData.js';
+import { OUTPUT_MESSAGES } from './constants/Messages.js';
 import AmountCalculator from './AmountCalculator.js';
 import { Console } from '@woowacourse/mission-utils';
+import OutputView from './OutputView';
 
 class BenefitCalculator {
   #date;
@@ -84,6 +86,23 @@ class BenefitCalculator {
     const totalBenefit = totalDiscount + giftBenefit;
 
     return totalBenefit;
+  }
+
+  hasEventBadge() {
+    const totalBenefit = this.calculateTotalBenefit();
+    let eventBadge = OUTPUT_MESSAGES.no_result;
+
+    if (totalBenefit >= NUMBER_CONDITION.star_badge_amount) {
+      eventBadge = OUTPUT_MESSAGES.star_badge;
+    }
+    if (totalBenefit >= NUMBER_CONDITION.tree_badge_amount) {
+      eventBadge = OUTPUT_MESSAGES.tree_badge;
+    }
+    if (totalBenefit >= NUMBER_CONDITION.santa_badge_amount) {
+      eventBadge = OUTPUT_MESSAGES.santa_badge;
+    }
+
+    return eventBadge;
   }
 }
 

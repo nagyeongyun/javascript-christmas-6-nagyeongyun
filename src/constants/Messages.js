@@ -17,4 +17,7 @@ export const OUTPUT_MESSAGES = Object.freeze({
 
   gift: '샴페인 1개',
   no_result: '없음',
+  star_badge: '별',
+  tree_badge: '트리',
+  santa_badge: '산타',
 });
