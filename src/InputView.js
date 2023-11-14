@@ -5,31 +5,33 @@ import OutputView from './OutputView.js';
 
 const InputView = {
   async readDate() {
-    const inputDate = await Console.readLineAsync(INPUT_MESSAGES.date);
     try {
+      const inputDate = await Console.readLineAsync(INPUT_MESSAGES.date);
       Validator.inputDate(inputDate);
+
+      return inputDate;
     } catch (error) {
       Console.print(error.message);
-      return this.readDate();
+      return InputView.readDate();
     }
-    return inputDate;
   },
 
   async readOrder() {
-    const inputOrder = await Console.readLineAsync(INPUT_MESSAGES.order);
     try {
+      const inputOrder = await Console.readLineAsync(INPUT_MESSAGES.order);
       Validator.inputOrder(inputOrder);
+
+      return inputOrder.split(',');
     } catch (error) {
       Console.print(error.message);
-      return this.orderData();
+      return InputView.orderData();
     }
-    return inputOrder.split(',');
   },
 
   async orderData() {
     try {
-      const orderData = await this.readOrder();
-      const orderMenu = {};
+      const orderData = await InputView.readOrder();
+      const orderMenu = [];
 
       orderData.forEach(data => {
         const [name, count] = data.split('-');
@@ -42,7 +44,7 @@ const InputView = {
       return orderMenu;
     } catch (error) {
       Console.print(error.message);
-      return this.orderData();
+      return InputView.orderData();
     }
   },
 };
