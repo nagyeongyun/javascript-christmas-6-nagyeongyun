@@ -12,10 +12,6 @@ class App {
     const orderMenu = await InputView.orderData();
 
     const orderData = new OrderDataManager(orderMenu);
-    const amountCalculator = new AmountCalculator(orderData);
-
-    //amountCalculator.hasGiftMenu();
-
     const date = new BenefitCalculator(inputDate, orderData);
 
     date.calculateTotalBenefit();

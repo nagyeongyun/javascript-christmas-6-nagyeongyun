@@ -15,9 +15,18 @@ export const OUTPUT_MESSAGES = Object.freeze({
   discount_after_amount: '\n<할인 후 예상 결제 금액>',
   event_badge: '\n<혜택 내역>',
 
+  minus: '-',
   gift: '샴페인 1개',
   no_result: '없음',
   star_badge: '별',
   tree_badge: '트리',
   santa_badge: '산타',
 });
+
+export const BENEFIT_LIST = {
+  '크리스마스 디데이 할인': 0,
+  '평일 할인': 0,
+  '주말 할인': 0,
+  '특별 할인': 0,
+  '증정 이벤트': 0,
+};

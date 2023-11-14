@@ -1,7 +1,8 @@
 import { NUMBER_CONDITION } from './constants/EventData.js';
-import { OUTPUT_MESSAGES } from './constants/Messages.js';
+import { OUTPUT_MESSAGES, BENEFIT_LIST } from './constants/Messages.js';
 import AmountCalculator from './AmountCalculator.js';
 import { Console } from '@woowacourse/mission-utils';
+import OutputView from './OutputView.js';
 
 class BenefitCalculator {
   #date;
@@ -67,11 +68,7 @@ class BenefitCalculator {
     return specialDiscount;
   }
 
-  calculateTotalDiscount() {
-    const christmasBenefit = this.calculateChristmasDiscount();
-    const weekBenefit = this.weekBenefitManage();
-    const specialBenefit = this.calculateSpecialDiscount();
-
+  calculateTotalDiscount(christmasBenefit, weekBenefit, specialBenefit) {
     const totalDiscount = christmasBenefit + weekBenefit + specialBenefit;
     this.amount.discountAfterAmount(totalDiscount);
 
@@ -83,8 +80,29 @@ class BenefitCalculator {
     const giftBenefit = this.amount.hasGiftMenu();
 
     const totalBenefit = totalDiscount + giftBenefit;
+    this.totalBenefitList(giftBenefit);
 
     return totalBenefit;
+  }
+
+  totalBenefitList(giftBenefit) {
+    const christmasBenefit = this.calculateChristmasDiscount();
+    const weekBenefit = this.weekBenefitManage();
+    const specialBenefit = this.calculateSpecialDiscount();
+
+    BENEFIT_LIST['크리스마스 디데이 할인'] = christmasBenefit;
+    BENEFIT_LIST[this.isWeekday() ? '평일 할인' : '주말 할인'] = weekBenefit;
+    BENEFIT_LIST['특별 할인'] = specialBenefit;
+    BENEFIT_LIST['증정 이벤트'] = giftBenefit;
+
+    OutputView.printBenefitList(BENEFIT_LIST);
+    this.calculateTotalDiscount(christmasBenefit, weekBenefit, specialBenefit);
+
+    return BENEFIT_LIST;
+  }
+
+  isWeekday() {
+    return !NUMBER_CONDITION.weekend_days.includes(Number(this.#date));
   }
 
   hasEventBadge() {
@@ -95,6 +113,7 @@ class BenefitCalculator {
       eventBadge = OUTPUT_MESSAGES.star_badge;
     }
     if (totalBenefit >= NUMBER_CONDITION.tree_badge_amount) {
+      ㄴ;
       eventBadge = OUTPUT_MESSAGES.tree_badge;
     }
     if (totalBenefit >= NUMBER_CONDITION.santa_badge_amount) {

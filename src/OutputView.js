@@ -32,6 +32,25 @@ const OutputView = {
 
     return Console.print(OUTPUT_MESSAGES.gift);
   },
+
+  printBenefitList(list) {
+    Console.print(OUTPUT_MESSAGES.benefit_list);
+
+    const hasBenefit = Object.values(list).every(
+      value => value === NUMBER_CONDITION.no_discount,
+    );
+
+    if (hasBenefit) {
+      return Console.print(OUTPUT_MESSAGES.no_result);
+    }
+
+    Object.entries(list).forEach(([key, value]) => {
+      if (value !== NUMBER_CONDITION.no_discount) {
+        const formattedValue = value.toLocaleString();
+        Console.print(`${key}: -${formattedValue}원`);
+      }
+    });
+  },
 };
 
 export default OutputView;
