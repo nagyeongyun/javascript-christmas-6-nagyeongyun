@@ -51,6 +51,13 @@ const OutputView = {
       }
     });
   },
+
+  printTotalBenefitAmount(amount) {
+    Console.print(OUTPUT_MESSAGES.total_benefit_amount);
+
+    const totalBenefitAmount = amount.toLocaleString();
+    Console.print(`-${totalBenefitAmount}원`);
+  },
 };
 
 export default OutputView;

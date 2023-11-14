@@ -68,7 +68,11 @@ class BenefitCalculator {
     return specialDiscount;
   }
 
-  calculateTotalDiscount(christmasBenefit, weekBenefit, specialBenefit) {
+  calculateTotalDiscount() {
+    const christmasBenefit = this.calculateChristmasDiscount();
+    const weekBenefit = this.weekBenefitManage();
+    const specialBenefit = this.calculateSpecialDiscount();
+
     const totalDiscount = christmasBenefit + weekBenefit + specialBenefit;
     this.amount.discountAfterAmount(totalDiscount);
 
@@ -78,9 +82,11 @@ class BenefitCalculator {
   calculateTotalBenefit() {
     const totalDiscount = this.calculateTotalDiscount();
     const giftBenefit = this.amount.hasGiftMenu();
+    this.totalBenefitList(giftBenefit);
 
     const totalBenefit = totalDiscount + giftBenefit;
-    this.totalBenefitList(giftBenefit);
+
+    OutputView.printTotalBenefitAmount(totalBenefit);
 
     return totalBenefit;
   }
@@ -96,7 +102,7 @@ class BenefitCalculator {
     BENEFIT_LIST['증정 이벤트'] = giftBenefit;
 
     OutputView.printBenefitList(BENEFIT_LIST);
-    this.calculateTotalDiscount(christmasBenefit, weekBenefit, specialBenefit);
+    //this.calculateTotalDiscount(christmasBenefit, weekBenefit, specialBenefit);
 
     return BENEFIT_LIST;
   }
@@ -113,7 +119,6 @@ class BenefitCalculator {
       eventBadge = OUTPUT_MESSAGES.star_badge;
     }
     if (totalBenefit >= NUMBER_CONDITION.tree_badge_amount) {
-      ㄴ;
       eventBadge = OUTPUT_MESSAGES.tree_badge;
     }
     if (totalBenefit >= NUMBER_CONDITION.santa_badge_amount) {
