@@ -74,7 +74,6 @@ class BenefitCalculator {
     const specialBenefit = this.calculateSpecialDiscount();
 
     const totalDiscount = christmasBenefit + weekBenefit + specialBenefit;
-    this.amount.discountAfterAmount(totalDiscount);
 
     return totalDiscount;
   }
@@ -88,6 +87,7 @@ class BenefitCalculator {
 
     OutputView.printTotalBenefitAmount(totalBenefit);
 
+    this.amount.discountAfterAmount(totalDiscount);
     return totalBenefit;
   }
 
@@ -102,7 +102,6 @@ class BenefitCalculator {
     BENEFIT_LIST['증정 이벤트'] = giftBenefit;
 
     OutputView.printBenefitList(BENEFIT_LIST);
-    //this.calculateTotalDiscount(christmasBenefit, weekBenefit, specialBenefit);
 
     return BENEFIT_LIST;
   }

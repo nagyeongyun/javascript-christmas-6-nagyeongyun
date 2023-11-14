@@ -28,6 +28,8 @@ class AmountCalculator {
     const totalDiscount = discount;
     const expectedPayment = this.#totalAmount - totalDiscount;
 
+    OutputView.printExpectedPayment(expectedPayment);
+
     return expectedPayment;
   }
 }

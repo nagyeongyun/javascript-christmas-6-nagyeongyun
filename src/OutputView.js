@@ -58,6 +58,13 @@ const OutputView = {
     const totalBenefitAmount = amount.toLocaleString();
     Console.print(`-${totalBenefitAmount}원`);
   },
+
+  printExpectedPayment(amount) {
+    Console.print(OUTPUT_MESSAGES.discount_after_amount);
+
+    const expectedPayment = amount.toLocaleString();
+    Console.print(`${expectedPayment}원`);
+  },
 };
 
 export default OutputView;

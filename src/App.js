@@ -15,6 +15,7 @@ class App {
     const date = new BenefitCalculator(inputDate, orderData);
 
     date.calculateTotalBenefit();
+    //date.calculateTotalDiscount();
   }
 }
 
