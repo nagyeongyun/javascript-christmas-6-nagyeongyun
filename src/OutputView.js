@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import { OUTPUT_MESSAGES } from './constants/Messages.js';
+import { NUMBER_CONDITION } from './constants/EventData.js';
 
 const OutputView = {
   printStart() {
@@ -20,6 +21,16 @@ const OutputView = {
 
     Console.print(OUTPUT_MESSAGES.total_order_amount);
     Console.print(`${totalAmount}원`);
+  },
+
+  printGiftMenu(gift) {
+    Console.print(OUTPUT_MESSAGES.gift_menu);
+
+    if (gift == NUMBER_CONDITION.no_discount) {
+      return Console.print(OUTPUT_MESSAGES.no_result);
+    }
+
+    return Console.print(OUTPUT_MESSAGES.gift);
   },
 };
 

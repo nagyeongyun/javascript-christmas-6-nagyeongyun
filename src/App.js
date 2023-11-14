@@ -14,7 +14,7 @@ class App {
     const orderData = new OrderDataManager(orderMenu);
     const amountCalculator = new AmountCalculator(orderData);
 
-    amountCalculator.calculateTotalAmount();
+    //amountCalculator.hasGiftMenu();
 
     const date = new BenefitCalculator(inputDate, orderData);
 

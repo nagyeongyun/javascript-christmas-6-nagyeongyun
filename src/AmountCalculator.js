@@ -9,29 +9,19 @@ class AmountCalculator {
 
   constructor(orderData) {
     this.orderData = orderData;
-  }
-
-  calculateTotalAmount() {
-    const prices = this.orderData.findPrice();
-    this.#totalAmount = prices.reduce((total, price) => total + price, 0);
-
-    try {
-      Validator.minAmount(this.#totalAmount);
-    } catch (error) {
-      Console.print(error.message);
-      return InputView.orderData();
-    }
-    OutputView.printTotalAmount(this.#totalAmount);
-
-    return this.#totalAmount;
+    this.#totalAmount = this.orderData.calculateTotalAmount();
   }
 
   hasGiftMenu() {
-    if (this.#totalAmount >= NUMBER_CONDITION.gift_condition) {
-      return NUMBER_CONDITION.gift_amount;
-    }
+    let giftMenu = NUMBER_CONDITION.no_discount;
+    OutputView.printTotalAmount(this.#totalAmount);
 
-    return NUMBER_CONDITION.no_discount;
+    if (this.#totalAmount >= NUMBER_CONDITION.gift_condition) {
+      giftMenu = NUMBER_CONDITION.gift_amount;
+    }
+    OutputView.printGiftMenu(giftMenu);
+
+    return giftMenu;
   }
 
   discountAfterAmount(discount) {
