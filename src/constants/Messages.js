@@ -13,7 +13,7 @@ export const OUTPUT_MESSAGES = Object.freeze({
   benefit_list: '\n<혜택 내역>',
   total_benefit_amount: '\n<총혜택 금액>',
   discount_after_amount: '\n<할인 후 예상 결제 금액>',
-  event_badge: '\n<혜택 내역>',
+  event_badge: '\n<12월 이벤트 배지>',
 
   minus: '-',
   gift: '샴페인 1개',
