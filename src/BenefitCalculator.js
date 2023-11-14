@@ -1,7 +1,6 @@
 import { NUMBER_CONDITION } from './constants/EventData.js';
 import { OUTPUT_MESSAGES, BENEFIT_LIST } from './constants/Messages.js';
 import AmountCalculator from './AmountCalculator.js';
-import { Console } from '@woowacourse/mission-utils';
 import OutputView from './OutputView.js';
 
 class BenefitCalculator {

@@ -1,7 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import { NUMBER_CONDITION } from './constants/EventData.js';
-import Validator from './Validator.js';
-import InputView from './InputView.js';
+import { ERROR_MESSAGES } from './constants/Errors.js';
 import OutputView from './OutputView.js';
 
 class AmountCalculator {
@@ -10,6 +9,17 @@ class AmountCalculator {
   constructor(orderData) {
     this.orderData = orderData;
     this.#totalAmount = this.orderData.calculateTotalAmount();
+  }
+
+  checkMinAmount() {
+    if (this.#totalAmount < NUMBER_CONDITION.min_discount_amount) {
+      Console.print(ERROR_MESSAGES.min_amount_error);
+      OutputView.printNoDiscount(this.#totalAmount);
+
+      return true;
+    }
+
+    return false;
   }
 
   hasGiftMenu() {

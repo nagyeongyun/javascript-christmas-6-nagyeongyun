@@ -75,6 +75,23 @@ const OutputView = {
 
     return Console.print(result);
   },
+
+  printNoDiscount(amount) {
+    const totalAmount = amount.toLocaleString();
+
+    Console.print(OUTPUT_MESSAGES.total_order_amount);
+    Console.print(`${totalAmount}원`);
+    Console.print(OUTPUT_MESSAGES.gift_menu);
+    Console.print(OUTPUT_MESSAGES.no_result);
+    Console.print(OUTPUT_MESSAGES.benefit_list);
+    Console.print(OUTPUT_MESSAGES.no_result);
+    Console.print(OUTPUT_MESSAGES.total_benefit_amount);
+    Console.print(`${NUMBER_CONDITION.no_discount}원`);
+    Console.print(OUTPUT_MESSAGES.discount_after_amount);
+    Console.print(`${totalAmount}원`);
+    Console.print(OUTPUT_MESSAGES.event_badge);
+    Console.print(OUTPUT_MESSAGES.no_result);
+  },
 };
 
 export default OutputView;

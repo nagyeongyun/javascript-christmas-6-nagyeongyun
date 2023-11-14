@@ -27,22 +27,23 @@ const InputView = {
   },
 
   async orderData() {
-    const orderData = await this.readOrder();
-    const orderMenu = {};
-
-    orderData.forEach(data => {
-      const [name, count] = data.split('-');
-      const menuName = name.trim();
-      orderMenu[menuName] = Number(count);
-    });
     try {
+      const orderData = await this.readOrder();
+      const orderMenu = {};
+
+      orderData.forEach(data => {
+        const [name, count] = data.split('-');
+        const menuName = name.trim();
+        orderMenu[menuName] = Number(count);
+      });
       Validator.orderData(orderMenu, orderData);
       OutputView.printMenu(orderMenu);
+
+      return orderMenu;
     } catch (error) {
       Console.print(error.message);
       return this.orderData();
     }
-    return orderMenu;
   },
 };
 

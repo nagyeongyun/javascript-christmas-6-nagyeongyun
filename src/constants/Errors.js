@@ -5,6 +5,6 @@ export const ERROR_MESSAGES = Object.freeze({
   max_order_error:
     '\n[ERROR] 메뉴는 한 번에 최대 20개까지만 주문 가능합니다.\n',
   min_amount_error:
-    '\n[ERROR] 총주문 금액 10,000원 이상부터 이벤트가 적용됩니다.\n',
+    '\n[주의!] 총주문 금액 10,000원 이상부터 이벤트가 적용됩니다.',
   only_drink_error: '\n[ERROR] 음료만 주문 시, 주문할 수 없습니다.\n',
 });

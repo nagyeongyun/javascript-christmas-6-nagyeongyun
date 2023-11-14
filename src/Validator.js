@@ -54,12 +54,6 @@ class Validator {
       throw new Error(ERROR_MESSAGES.only_drink_error);
     }
   }
-
-  static minAmount(amount) {
-    if (amount < 10000) {
-      throw new Error(ERROR_MESSAGES.min_amount_error);
-    }
-  }
 }
 
 export default Validator;

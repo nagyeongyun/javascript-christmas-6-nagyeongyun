@@ -1,7 +1,4 @@
-import { Console } from '@woowacourse/mission-utils';
 import { MENU_LIST } from './constants/EventData.js';
-import InputView from './InputView.js';
-import Validator from './Validator.js';
 
 class OrderDataManager {
   #orderMenu;
@@ -24,13 +21,6 @@ class OrderDataManager {
   calculateTotalAmount() {
     const prices = this.findPrice();
     const totalAmount = prices.reduce((total, price) => total + price, 0);
-
-    try {
-      Validator.minAmount(totalAmount);
-    } catch (error) {
-      Console.print(error.message);
-      return InputView.orderData();
-    }
 
     return totalAmount;
   }
