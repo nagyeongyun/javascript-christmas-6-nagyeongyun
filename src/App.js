@@ -14,8 +14,7 @@ class App {
     const orderData = new OrderDataManager(orderMenu);
     const date = new BenefitCalculator(inputDate, orderData);
 
-    date.calculateTotalBenefit();
-    //date.calculateTotalDiscount();
+    date.hasEventBadge();
   }
 }
 

@@ -65,6 +65,16 @@ const OutputView = {
     const expectedPayment = amount.toLocaleString();
     Console.print(`${expectedPayment}원`);
   },
+
+  printEventBadge(result) {
+    Console.print(OUTPUT_MESSAGES.event_badge);
+
+    if (result == NUMBER_CONDITION.no_discount) {
+      return Console.print(OUTPUT_MESSAGES.no_result);
+    }
+
+    return Console.print(result);
+  },
 };
 
 export default OutputView;

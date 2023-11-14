@@ -124,6 +124,8 @@ class BenefitCalculator {
       eventBadge = OUTPUT_MESSAGES.santa_badge;
     }
 
+    OutputView.printEventBadge(eventBadge);
+
     return eventBadge;
   }
 }
