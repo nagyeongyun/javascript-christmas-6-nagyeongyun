@@ -26,9 +26,8 @@ class BenefitCalculator {
     if (!NUMBER_CONDITION.weekend_days.includes(Number(this.#date))) {
       return this.calculateWeekdayDiscount();
     }
-    if (NUMBER_CONDITION.weekend_days.includes(Number(this.#date))) {
-      return this.calculateWeekendDiscount();
-    }
+
+    return this.calculateWeekendDiscount();
   }
 
   calculateWeekdayDiscount() {
