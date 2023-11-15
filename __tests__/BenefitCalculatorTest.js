@@ -1,5 +1,18 @@
+import { MissionUtils } from '@woowacourse/mission-utils';
+import { EOL as LINE_SEPARATOR } from 'os';
+import { ERROR_MESSAGES } from '../src/constants/Errors.js';
 import BenefitCalculator from '../src/BenefitCalculator.js';
 import OrderDataManager from '../src/OrderDataManager.js';
+
+const mockQuestions = inputs => {
+  MissionUtils.Console.readLineAsync = jest.fn();
+
+  MissionUtils.Console.readLineAsync.mockImplementation(() => {
+    const input = inputs.shift();
+
+    return Promise.resolve(input);
+  });
+};
 
 describe('BenefitCalculator 테스트', () => {
   let benefitCalculator;

@@ -46,8 +46,9 @@ class Validator {
 
   static eventAlert(menu, count) {
     const drink = Object.keys(MENU_LIST.drink);
+    const totalCount = count.reduce((acc, curr) => acc + curr, 0);
 
-    if (count.some(count => count > 20)) {
+    if (totalCount > 20) {
       throw new Error(ERROR_MESSAGES.max_order_error);
     }
     if (menu.length === 1 && drink.includes(menu[0])) {
